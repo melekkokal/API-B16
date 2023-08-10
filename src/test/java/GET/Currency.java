@@ -1,4 +1,4 @@
-package get;
+package GET;
 
 import io.restassured.RestAssured;
 import org.junit.Test;
