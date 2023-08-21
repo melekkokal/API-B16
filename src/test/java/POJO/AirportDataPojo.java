@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AirportDataPojo {
-private AirportAttributesPojo attributes;
+    private AirportAttributesPojo attributes;
 }

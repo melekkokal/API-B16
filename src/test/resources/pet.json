@@ -1,8 +1,8 @@
 {
-  "id":12345,
-  "name":"marlow",
-  "photoUrls":null,
-  "tags":null,
-  "status":"playing",
-  "category":null
+  "id": 12345,
+  "name": "marlow",
+  "photoUrls": null,
+  "tags": null,
+  "status": "playing",
+  "category": null
 }

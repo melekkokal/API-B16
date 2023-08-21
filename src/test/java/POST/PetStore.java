@@ -18,9 +18,11 @@ public class PetStore {
         RestAssured.baseURI="https://petstore.swagger.io";
         RestAssured.basePath="v2/pet";
         Response response = RestAssured.given().accept(ContentType.JSON)
-                .contentType(ContentType.JSON).body(PayloadUtils.getPetPayload(30796, "luna")) //copy and paste your request body
+                .contentType(ContentType.JSON)
+                .body(PayloadUtils.getPetPayload(30796, "luna")) //copy and paste your request body
                 .when().post()
-                .then().statusCode(200).log().body()
+                .then().statusCode(200)
+                .log().body()
                 .extract().response();
 
         PetStorePojo petStorePojo= response.as(PetStorePojo.class);
@@ -39,10 +41,10 @@ public class PetStore {
     public void createPetWithJsonFileTest(){
         RestAssured.baseURI="https://petstore.swagger.io";
         RestAssured.basePath="v2/pet";
-        File jsonfile = new File("src/test/resources/pet.json");
+        File jsonfile = new File("src/test/resources/pet.json"); //where we created the json file.
 
-        RestAssured.given()
-                .accept(ContentType.JSON)
+        //here we pass the json file and validate that it passes.
+        RestAssured.given().accept(ContentType.JSON)
                 .contentType(ContentType.JSON)
                 .body(jsonfile)
                 .when().post()
@@ -54,12 +56,15 @@ public class PetStore {
         pet.setName("luna");
         pet.setStatus("relaxing");
 
+        //using the java object. request body is now java object.
         Response response = RestAssured.given() .accept(ContentType.JSON)
                 .contentType(ContentType.JSON)
-                .body(pet)
+                .body(pet) //object as a parameter.
                 .when().post()
                 .then().statusCode(200)
                 .log().body().extract().response();
+                //log.body prints out
+
         //Deserialization - JSONPath
         JsonPath parsedResponse = response.jsonPath(); //this will help use deserialize.
         String actualName = parsedResponse.getString("name");
